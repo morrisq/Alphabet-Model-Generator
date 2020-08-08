@@ -62,7 +62,7 @@ for l in range(0, len(alphabet)):
 basedir = bpy.path.abspath('//')
 
 # deselect all objects
-bpy.ops.object.select_all(action='DESELECT')    
+bpy.ops.object.select_all(action='DESELECT')
 
 view_layer = bpy.context.view_layer
 
@@ -76,6 +76,11 @@ for ob in view_layer.objects:
         # export the currently selected object to its own file based on its name
         bpy.context.object.rotation_euler[0] = 1.5708
         bpy.context.object.rotation_euler[2] = 3.14159
+        
+        bpy.ops.object.transform_apply(location=False, rotation=True, scale=False, properties=False)
+        
+        bpy.context.object.rotation_euler[0] = -1.5708
+        bpy.ops.object.transform_apply(location=False, rotation=True, scale=False, properties=False)
         
         bpy.ops.object.location_clear()
         bpy.ops.export_scene.fbx(
